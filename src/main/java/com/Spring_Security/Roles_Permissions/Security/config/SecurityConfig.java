@@ -48,8 +48,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider () {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService());
+    public AuthenticationProvider authenticationProvider (UserDetailsService userDetailsService) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userDetailsService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
@@ -59,32 +59,6 @@ public class SecurityConfig {
         //No habrá algoritmo de encriptado al ser un modelo base de prueba
         // Las contraseñas irán en texto plano al ser un primer modelo
         return NoOpPasswordEncoder.getInstance();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService(){
-        //Se simulará usuarios creados de manera "hardcodeada/manual"
-        List userDetailsList = new ArrayList<>();
-
-        userDetailsList.add(User.withUsername("user1")
-                .password("1234")
-                .roles("ADMIN")
-                .authorities("CREATE","READ","UPDATE","DELETE")
-                .build());
-
-        userDetailsList.add(User.withUsername("user2")
-                .password("1234")
-                .roles("USER")
-                .authorities("READ")
-                .build());
-
-        userDetailsList.add(User.withUsername("user3")
-                .password("1234")
-                .roles("USER")
-                .authorities("UPDATE")
-                .build());
-
-        return new InMemoryUserDetailsManager(userDetailsList); //Gracias a esta linea se aclara que es a nivel lógico
     }
 
 }
