@@ -30,7 +30,7 @@ public class PermissionController {
         //Si tiene un objeto dentro del optional devuelve 200, sino 404
     }
 
-    @PostMapping("/")
+    @PostMapping("/create")
     public ResponseEntity<Permissions> createPermissions(@RequestBody Permissions permissions){
         Permissions newPermission = permissionService.createPermission(permissions);
         return ResponseEntity.ok(newPermission);
