@@ -41,6 +41,9 @@ public class UserSecController {
         Set<Roles> roleList = new HashSet<>();
         Roles readRole;
 
+        //encriptación de contraseñas
+        userSec.setPassword(userService.encriptPassword(userSec.getPassword()));
+
         // Recuperar la Permission/s por su ID
         for (Roles role : userSec.getRolesList()){
             readRole = roleService.findById(role.getId()).orElse(null);
@@ -56,6 +59,6 @@ public class UserSecController {
             UserSec newUser = userService.save(userSec);
             return ResponseEntity.ok(newUser);
         }
-        return null;
+        return ResponseEntity.badRequest().build();
     }
 }

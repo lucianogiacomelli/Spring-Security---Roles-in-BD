@@ -3,6 +3,7 @@ package com.Spring_Security.Roles_Permissions.Service;
 import com.Spring_Security.Roles_Permissions.Model.UserSec;
 import com.Spring_Security.Roles_Permissions.Repository.UserSecRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,6 +41,6 @@ public class UserSecService implements IUserSecService {
 
     @Override
     public String encriptPassword(String password) {
-        return "";
+        return new BCryptPasswordEncoder().encode(password);
     }
 }
