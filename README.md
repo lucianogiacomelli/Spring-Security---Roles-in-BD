@@ -24,7 +24,7 @@ Proyecto de práctica en **Spring Boot** que implementa un modelo de seguridad d
     * Cada `Role` a una autoridad formateada como `ROLE_<role>` (ej. `ROLE_ADMIN`).
     * Cada `Permission` a una autoridad directa por su nombre (ej. `READ_PRIVILEGES`).
 * **Autenticación Multicanal & Stateless:**
-    * Autenticación vía `httpBasic()` para APIs REST y `formLogin()` habilitado.
+    * Autenticación vía `httpBasic()` para APIs REST, `formLogin()` habilitado y encriptación de contraseñas.
     * Sesión configurada como `SessionCreationPolicy.STATELESS` y CSRF desactivado.
 * **Endpoints CRUD REST:** Controladores independientes bajo la ruta base `/api/` para administrar permisos, roles y usuarios.
 
